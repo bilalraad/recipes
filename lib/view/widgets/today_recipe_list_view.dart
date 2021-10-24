@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-
-import '../models/recipe.dart';
+import 'package:hello_flutter/data/models/recipe.dart';
+import 'recipes_of_day.dart';
 
 import 'card1.dart';
 import 'card2.dart';
 import 'card3.dart';
 
-class RecipeCardType {
-  static const card1 = 'card1';
-  static const card2 = 'card2';
-  static const card3 = 'card3';
-}
-
-class RecipesOfTheDay extends StatelessWidget {
+class TodayRecipeListView extends StatelessWidget {
   final List<Recipe> recipes;
-  const RecipesOfTheDay({
+
+  const TodayRecipeListView({
     Key? key,
     required this.recipes,
   }) : super(key: key);
