@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hello_flutter/controllers/auth_provider.dart';
+import 'package:provider/src/provider.dart';
 import '../../data/API/auth_api.dart';
 
 class RecipesScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class RecipesScreen extends StatelessWidget {
       child: ElevatedButton(
         child: Text('Logout'),
         onPressed: () {
-          AuthApi().logOut();
+          context.read<AuthProvider>().logOut();
         },
       ),
     );

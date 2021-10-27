@@ -6,8 +6,11 @@ class AuthApi {
     try {
       final user = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      print('object3');
+
       return user.user!;
     } catch (e) {
+      print(e);
       rethrow;
     }
   }

@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:219480384232:android:5903fb04157437f3649f5d",
+        "mobilesdk_app_id": "1:219480384232:android:e67e56b0015b82fe649f5d",
         "android_client_info": {
-          "package_name": "com.example.hello_flutter"
+          "package_name": "com.projectone.recipes"
         }
       },
       "oauth_client": [

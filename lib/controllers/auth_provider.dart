@@ -9,19 +9,56 @@ class AuthProvider extends ChangeNotifier {
   AuthProvider(this._authApi);
 
   User? _user;
+  String? _error;
 
   User? get user => _user;
+  String? get error => _error;
+
+  bool get isLoggedIn => _authApi.isLogged();
 
   Future<void> signUp(String email, String password) async {
     try {
+      print('object1');
       _user = await _authApi.signUp(email, password);
+      print('object2');
+
       notifyListeners();
     } catch (e) {
       if (e is PlatformException) {
-        throw FlutterError('network error');
+        _error = ('network error');
       } else {
-        throw FlutterError('Unknown erro');
+        _error = ('Unknown error ${e}');
       }
+      notifyListeners();
+    }
+  }
+
+  Future<void> logIn(String email, String password) async {
+    try {
+      _user = await _authApi.logIn(email, password);
+      notifyListeners();
+    } catch (e) {
+      if (e is PlatformException) {
+        _error = ('network error');
+      } else {
+        _error = ('Unknown error');
+      }
+      notifyListeners();
+    }
+  }
+
+  Future<void> logOut() async {
+    try {
+      await _authApi.logOut();
+      _user = null;
+      notifyListeners();
+    } catch (e) {
+      if (e is PlatformException) {
+        _error = ('network error');
+      } else {
+        _error = ('Unknown error');
+      }
+      notifyListeners();
     }
   }
 }

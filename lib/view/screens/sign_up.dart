@@ -1,9 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import '../../data/API/auth_api.dart';
-
-import 'home.dart';
+import 'package:hello_flutter/controllers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -70,20 +67,20 @@ class _SignUpState extends State<SignUp> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  final authProvider =
+                      Provider.of<AuthProvider>(context, listen: false);
                   if (_fromKey.currentState!.validate()) {
                     try {
-                      await AuthApi().signUp(
+                      await authProvider.signUp(
                           emailController.text, passwordController.text);
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const Home()),
-                      );
                     } catch (e) {
                       print(e);
                     }
                   }
                 },
                 child: Text('SignUp'),
-              )
+              ),
+              Text(context.watch<AuthProvider>().error ?? ''),
             ],
           ),
         ),
